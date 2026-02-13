@@ -1,0 +1,151 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Poppins:wght@400;500;700&display=swap");
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+}
+
+a {
+  text-decoration: none;
+}
+
+header {
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+header nav {
+  width: 100%;
+  height: 120px;
+  /* max-width: 1200px; */
+  position: fixed;
+  padding: 0 8rem;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #2b1f1f;
+}
+
+header nav ul {
+  display: flex;
+  width: fit-content;
+  flex-direction: row;
+  justify-content: center;
+  gap: 60px;
+}
+
+header nav ul li {
+  list-style: none;
+  font-size: 29px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header nav ul li .logo {
+  font-weight: 700;
+  font-size: 43px;
+}
+
+header nav ul li a {
+  font-weight: 400;
+  color: white;
+}
+
+header nav ul li a:hover {
+  color: #9bc25c;
+}
+
+header nav form {
+  margin-right: 10rem;
+}
+
+header nav form input {
+  height: 3em;
+  width: 40em;
+  border-radius: 9999px;
+  padding: 0 2em;
+  border-collapse: collapse;
+  border: 0px solid black;
+}
+
+header nav form input:focus {
+  outline: none;
+}
+
+header nav .action-button {
+  color: white;
+  background-color: #9bc25c;
+  border-radius: 8px;
+  font-size: 23px;
+  width: fit;
+  height: fit-content;
+  padding: 10px 20px;
+}
+
+main {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  background-color: #fdf3ed;
+}
+
+main .container {
+  width: 80%;
+  height: fit-content;
+  position: relative;
+  top: 140px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+main .container #introduce {
+  background-color: #9e7676;
+  height: 17em;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 2.3em;
+}
+
+main .container #introduce .card {
+  background-color: rgb(255, 255, 255);
+  height: 80%;
+  width: 30%;
+  padding: 1em;
+  border: 1px solid rgb(187, 187, 187);
+  border-radius: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  text-align: justify;
+}
+
+main .container .book-list {
+  background-color: #9e7676;
+  height: 20em;
+}
+
+main .container .book-list:nth-child(2n + 0) {
+  background-color: #815b5b;
+}
+
+footer {
+  height: 6em;
+  background-color: #2b1f1f;
+  position: relative;
+  top: 10em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
