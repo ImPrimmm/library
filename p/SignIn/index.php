@@ -1,22 +1,13 @@
 <?php
 
-include '../../Include/database.php';
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $username = $_POST['username'];
-    $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
-
-    $query = "SELECT * FROM users WHERE username='$username' AND password='$password'";
-    $result = mysqli_query($conn, $query);
-
-    if (mysqli_num_rows($result) == 1) {
-        header("Location: ./Dashboard/index.php");
-        exit();
-    } else {
-        echo "<script>alert('Invalid username or password');</script>";
-    }
+session_start();
+if (isset($_SESSION['email']) && $_SESSION['role'] === 'guest') {
+    header("Location: ../../index.php");
+    exit();
+} else if (isset($_SESSION['email']) && ($_SESSION['role'] === 'admin' || $_SESSION['role'] === 'staff')){
+    header("Location: ../../admin-panel/index.php");
+    exit();
 }
-
 
 ?>
 
@@ -95,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             background-color: transparent;
             padding: 8px 16px 0px 0px;
             width: 100%;
-            
+
         }
 
         form .card .container .input-container .data-container input[type="text"]:focus,
@@ -130,14 +121,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 
 <body>
-    <form method="post">
+    <form action="../../auth/signInAuth.php" method="post">
         <div class="card">
             <div class="container">
                 <h1>Login</h1>
                 <div class="input-container">
-                    <div id="username-container" class="data-container">
-                        <label for="username">Username</label>
-                        <input type="text" name="username" id="username" class="box-input" maxlength="12">
+                    <div id="email-container" class="data-container">
+                        <label for="email">E-mail</label>
+                        <input type="text" name="email" id="email" class="box-input" maxlength="200">
                     </div>
 
                     <div id="password-container" class="data-container">

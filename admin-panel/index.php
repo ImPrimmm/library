@@ -1,3 +1,13 @@
+<?php
+
+session_start();
+if (isset($_SESSION['email']) && $_SESSION['role'] == 'guest') {
+    header("Location: ../index.php");
+    exit();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,5 +16,6 @@
     <title>Document</title>
 </head>
 <body>
+    
 </body>
 </html>

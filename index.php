@@ -1,5 +1,10 @@
 <?php
+
 session_start();
+if (isset($_SESSION['email']) && ($_SESSION['role'] === 'admin' || $_SESSION['role'] === 'staff')){
+    header("Location: ./admin-panel/index.php");
+    exit();
+}
 
 ?>
 
