@@ -1,62 +1,85 @@
 <?php
 
+session_start();
+
 include '../Include/database.php';
+require './verifyEmail.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $queryForGuest = "SELECT * FROM users WHERE email='$email' AND role='guest'";
-    $resultForGuest = mysqli_query($conn, $queryForGuest);
+    $query = $conn->prepare("SELECT * FROM users WHERE email = ?");
+    $query->bind_param("s", $email);
+    $query->execute();
+    $result = $query->get_result();
 
-    $queryForAdmin = "SELECT * FROM users WHERE email='$email' AND role='admin'";
-    $resultForAdmin = mysqli_query($conn, $queryForAdmin);
-
-    $queryForStaff = "SELECT * FROM users WHERE email='$email' AND role='staff'";
-    $resultForStaff = mysqli_query($conn, $queryForStaff);
-
-    function addSession($role, $email, $username)
+    function addSession($role, $email, $username, $id)
     {
-        session_start();
-        $_SESSION['role'] = $role;
-        $_SESSION['email'] = $email;
-        $_SESSION['username'] = $username;
-    }
-
-    function verifyPassword($verify, $role, $email, $username)
-    {
-        if ($role == "guest" && $verify) {
-            addSession($role, $email, $username);
-            header("Location: ../index.php");
-        } else if ($role == "admin" && $verify) {
-            addSession($role, $email, $username);
-            header("Location: ../admin-panel/index.php");
-        } else if ($role == "staff" && $verify) {
-            addSession($role, $email, $username);
-            header("Location: ../admin-panel/index.php");
+        if ($role === "admin" || $role === "staff") {
+            $_SESSION['role'] = $role;
+            $_SESSION['email'] = $email;
+            $_SESSION['username'] = $username;
+            $_SESSION['id'] = $id;
+        } else {
+            $_SESSION['role'] = $role;
+            $_SESSION['email'] = $email;
+            $_SESSION['username'] = $username;
         }
     }
 
-    if (mysqli_num_rows($resultForGuest) == 1) {
-        $row = mysqli_fetch_assoc($resultForGuest);
-        $passwordVerify = password_verify($password, $row['password']);
+    function verifyingPassword($pass, $data, $email, $conn)
+    {
+        $verifyPassword = password_verify($pass, $data['password']);
 
-        verifyPassword($passwordVerify, "guest", $email, $row['username']);
-    } else if (mysqli_num_rows($resultForAdmin) == 1) {
-        $row = mysqli_fetch_assoc($resultForAdmin);
-        $passwordVerify = password_verify($password, $row['password']);
+        if ($verifyPassword) {
+            if ($data['verify_token'] == NULL) {
+                $statusVerify = true;
 
-        verifyPassword($passwordVerify, "admin", $email, $row['username']);
-    } else if (mysqli_num_rows($resultForStaff) == 1) {
-        $row = mysqli_fetch_assoc($resultForStaff);
-        $passwordVerify = password_verify($password, $row['password']);
+                for (; $statusVerify;) {
+                    $verifyToken = md5(rand());
+                    $tokenValidation = $conn->prepare("SELECT * FROM users WHERE verify_token = ?");
+                    $tokenValidation->bind_param("s", $verifyToken);
+                    $tokenValidation->execute();
+                    $tokenResult = $tokenValidation->get_result();
+                    if ($tokenResult->num_rows == 1) {
+                        $verifyToken = md5(rand());
+                    } else {
+                        $statusVerify = false;
+                    }
+                };
+            } else {
+                if ($data['role'] == 'guest') {
+                    addSession("guest", $email, $data['username'], $data['user_id']);
+                    header("Location: ../index.php");
+                    exit;
+                } else if ($data['role'] == 'admin') {
+                    addSession("admin", $email, $data['username'], $data['user_id']);
+                    header("Location: ../admin-panel/index.php");
+                    exit;
+                } else if ($data['role'] == 'staff') {
+                    addSession("staff", $email, $data['username'], $data['user_id']);
+                    header("Location: ../admin-panel/index.php");
+                    exit;
+                }
+            }
+        } else {
+            $_SESSION['alert'] = 'wrongPassword';
+            header("Location: ../p/SignIn");
+            exit;
+        }
+    }
 
-        verifyPassword($passwordVerify, "staff", $email, $row['username']);
+    if (mysqli_num_rows($result) == 1) {
+        $row = $result->fetch_assoc();
+
+        verifyingPassword($password, $row, $email, $conn);
     } else {
-        echo "<script>Alert('Password atau Email salah')</script>";
+        $_SESSION['alert'] = 'wrongEmail';
+        header("Location: ../p/SignIn");
+        exit;
     }
 } else {
     header("Location: ../p/SignIn/index.php");
+    exit;
 }
-
-?>

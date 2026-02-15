@@ -1,15 +1,14 @@
 <?php
 
-include '../Include/database.php';
-require './verifyEmail.php';
+include "../../Include/database.php";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $id = $_POST['id'];
     $email = $_POST['email'];
     $username = $_POST['username'];
     $password = $_POST['password'];
     $confirmPassword = $_POST['confirm-password'];
-    $phoneNumber = $_POST['phone-number'];
-    $default = "guest";
+    $role = $_POST['roleOption'];
 
     $statusVerify = true;
 
@@ -31,43 +30,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $emailValidation->execute();
     $emailResult = $emailValidation->get_result();
 
-    $generateId = (string) "guest" . rand(10000, 99999);
-
-
-
-    $status = true;
-
-    for (; $status;) {
-        $validationId = $conn->prepare("SELECT * FROM users WHERE user_id = ?");
-        $validationId->bind_param("s", $generateId);
-        $validationId->execute();
-        $idResult = $validationId->get_result();
-        if ($idResult->num_rows == 1) {
-            $generateId = (string) "guest" . rand(10000, 99999);
-        } else {
-            $status = false;
-        }
-    };
-
     if ($password === $confirmPassword) {
         if (mysqli_num_rows($emailResult) == 1) {
             session_start();
             $_SESSION['alert'] = 'wrongEmail';
-            header("Location: ../p/SignUp");
+            header("Location: ../index.php");
         } else {
             $hashPassword = password_hash($password, PASSWORD_BCRYPT);
 
-            $create = $conn->prepare("INSERT INTO users (user_id, email, username, password, phone_number, role) VALUES (?, ?, ?, ?, ?, ?)");
-            $create->bind_param("ssssss", $generateId, $email, $username, $hashPassword, $phoneNumber, $default);
+            $create = $conn->prepare("INSERT INTO users (user_id, email, username, password, phone_number, role, verify_token) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            $create->bind_param("sssssss", $id, $email, $username, $hashPassword, $phoneNumber, $role, $verifyToken);
             $create->execute();
 
-            verifyingEmail($username, $email, $verifyToken, 'SignUp');
+            header("Location: ../index.php");
         }
     } else {
         session_start();
         $_SESSION['alert'] = 'wrongPassword';
-        header("Location: ../p/SignUp");
+        header("Location: ../index.php");
     }
 } else {
-    header("Location: ../p/SignUp/index.php");
+    header("Location: ../index.php");
 }

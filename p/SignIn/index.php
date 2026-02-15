@@ -4,9 +4,18 @@ session_start();
 if (isset($_SESSION['email']) && $_SESSION['role'] === 'guest') {
     header("Location: ../../index.php");
     exit();
-} else if (isset($_SESSION['email']) && ($_SESSION['role'] === 'admin' || $_SESSION['role'] === 'staff')){
+} else if (isset($_SESSION['email']) && ($_SESSION['role'] === 'admin' || $_SESSION['role'] === 'staff')) {
     header("Location: ../../admin-panel/index.php");
     exit();
+} else if (isset($_SESSION['alert']) && $_SESSION['alert'] === 'wrongPassword') {
+    echo "<script>alert('Password atau Email salah')</script>";
+    session_destroy();
+} else if (isset($_SESSION['alert']) && $_SESSION['alert'] === 'wrongEmail') {
+    echo "<script>alert('Akun belum terdaftar')</script>";
+    session_destroy();
+} else if (isset($_SESSION['alert']) && $_SESSION['alert'] === 'wrongVerification') {
+    echo "<script>alert('Akun belum diverifikasi, mohon untuk memverifikasi lewat email anda, harap check pula bagian spam')</script>";
+    session_destroy();
 }
 
 ?>
@@ -17,7 +26,7 @@ if (isset($_SESSION['email']) && $_SESSION['role'] === 'guest') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Sign In</title>
     <style>
         * {
             padding: 0;
@@ -139,14 +148,12 @@ if (isset($_SESSION['email']) && $_SESSION['role'] === 'guest') {
 
                     <div id="button-container">
                         <input type="submit" value="Submit" class="button-submit">
-                        <p>Belum punya akun? <a href="./mail.php">register</a></p>
+                        <p>Belum punya akun? <a href="../SignUp/">register</a></p>
                     </div>
                 </div>
             </div>
         </div>
     </form>
-
-    <script src="./script.js"></script>
 </body>
 
 </html>

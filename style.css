@@ -89,6 +89,16 @@ header nav .action-button {
   padding: 10px 20px;
 }
 
+header nav .logout-button {
+  color: white;
+  background-color: red;
+  border-radius: 8px;
+  font-size: 23px;
+  width: fit;
+  height: fit-content;
+  padding: 10px 20px;
+}
+
 main {
   min-height: 100vh;
   display: flex;

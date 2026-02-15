@@ -1,0 +1,6 @@
+# Folder dependency
+node_modules/
+vendor/
+
+# File environment
+.env

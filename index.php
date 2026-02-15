@@ -31,9 +31,9 @@ if (isset($_SESSION['email']) && ($_SESSION['role'] === 'admin' || $_SESSION['ro
             </form>
             <?php
                 if (!isset($_SESSION['username'])) {
-                    echo "<a href='' class='action-button'>Get Started</a>";
+                    echo "<a href='./p/SignIn' class='action-button'>Get Started</a>";
                 } else {
-                    echo "<a href='' class='action-button'>Profile</a>";
+                    echo "<a href='./auth/logoutAuth.php' class='logout-button'>Logout</a>";
                 }
             ?>
         </nav>
