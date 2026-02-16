@@ -61,7 +61,7 @@ if ($_SESSION['role'] === 'staff') {
         <label for="password">password</label>
         <input type="password" name="password" id="password">
 
-        <label for="confirm-password">password</label>
+        <label for="confirm-password">confirm-password</label>
         <input type="password" name="confirm-password" id="confirm-password">
 
         <label for="role">role</label>
@@ -95,6 +95,14 @@ if ($_SESSION['role'] === 'staff') {
         $data->execute();
         $result = $data->get_result();
         while ($show = $result->fetch_assoc()) {
+            if ($show['user_id'] !== $_SESSION['id']) {
+                $tag = "<td>
+                <a href='update.php?kode=$show[user_id]'><img class='update' src='../assets/img/edit.png'></a>
+                <a href='?userId=$show[user_id]'><img class='delete' src='../assets/img/trash.png'></a>
+              </td>";
+            } else {
+                $tag = "<td></td>";
+            }
             $no++;
             echo "
             <tr>
@@ -106,10 +114,7 @@ if ($_SESSION['role'] === 'staff') {
               <td id='phoneNumber$no'>$show[phone_number]</td>
               <td id='role$no'>$show[role]</td>
               <td id='verifyToken$no'>$show[verify_token]</td>
-              <td>
-                <a href='update.php?kode=$show[user_id]'><img class='update' src='../assets/img/edit.png'></a>
-                <a href='?userId=$show[user_id]'><img class='delete' src='../assets/img/trash.png'></a>
-              </td>
+              $tag
             </tr>
           ";
         }
