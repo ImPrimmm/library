@@ -34,10 +34,10 @@ a {
   font-weight: 700;
   font-size: 43px;
   color: white;
-  padding: 10px 20px;
+  padding: 10px 20px 10px 20px;
 }
 
-.navbar{
+.navbar {
   background-color: #102b3f;
   padding: 10px 10px;
   display: flex;
@@ -91,121 +91,88 @@ header .logout-button {
 }
 
 main {
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   justify-content: center;
+  align-items: center;
   background-color: #75c3ff;
 }
 
 main .container {
-  width: 90%;
-  height: fit-content;
   position: relative;
-  padding: 160px 0 10px 0;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-main .container #introduce {
-  background-color: #153852;
-  height: 17em;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 2.3em;
-}
-
-main .container #introduce .card {
-  background-color: rgb(255, 255, 255);
-  height: 80%;
-  width: 30%;
-  padding: 1em;
-  border: 1px solid rgb(187, 187, 187);
-  border-radius: 16px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 16px;
-  text-align: justify;
-}
-
-main .container .book-list {
-  background-color: #85a8c2;
-  height: 20em;
-}
-
-main .container .book-list:nth-child(2n + 0) {
-  background-color: #85a8c2;
-}
-
-main .container .book-list .wrapper {
-  background-color: #85a8c2;
-  height: 20em;
+  height: 100%;
   width: 100%;
   display: flex;
-  gap: 40px;
-  padding: 20px 40px;
+  justify-content: center;
+  align-items: center;
+  padding: 160px 0 10px 0;
 }
 
-main .container .book-list .wrapper .book {
+main .container .card {
+  width: 80%;
+  height: 90%;
+  background-color: white;
+  border-radius: 40px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+}
+
+main .container .card .cover {
   height: 100%;
   width: fit-content;
-  justify-content: center;
-  align-items: center;
-  gap: 16px;
+  padding: 0 10em;
 }
 
-main .container .book-list .wrapper .book a {
-  width: fit-content;
-  height: fit-content;
+main .container .card .cover .book {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 2em;
+  height: 100%;
 }
-main .container .book-list .wrapper .book a button {
+
+main .container .card .cover .book img {
+  height: 300px;
+  width: 250px;
+  border: 1px solid black;
+  border-radius: 8px;
+}
+
+main .container .card .cover .book a button {
   padding: 10px 40px;
   border-collapse: collapse;
   border: 2px solid #153852;
   background-color: #153852;
   color: white;
   border-radius: 8px;
+  transition: 0.5s;
 }
 
-main .container .book-list .wrapper .book a button:hover {
+main .container .card .cover .book a button:hover {
   background-color: transparent;
   border: 2px solid #153852;
   color: #153852;
   cursor: pointer;
 }
 
-main .container .book-list .wrapper .book img {
-  width: 11em;
+main .container .card .description {
   height: 100%;
+  width: 100%;
 }
 
-main .container .book-list .wrapper .next {
-  width: fit-content;
-  height: 100%;
+main .container .card .description .title {
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
-}
-
-main .container .book-list .wrapper .next button {
-  height: 68px;
-  width: 68px;
-  font-size: large;
-  border-radius: 99999px;
-  border-collapse: collapse;
-  border: 0;
+  padding: 3em 3em 1em;
 }
 
 footer {
   height: 6em;
   background-color: black;
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
