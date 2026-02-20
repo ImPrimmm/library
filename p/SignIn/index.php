@@ -55,6 +55,8 @@ if (isset($_SESSION['email']) && $_SESSION['role'] === 'guest') {
             </div>
         </div>
     </form>
+
+    <script src="./script.js"></script>
 </body>
 
 </html>

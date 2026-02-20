@@ -16,6 +16,32 @@ a {
   text-decoration: none;
 }
 
+p {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+h1 {
+  font-size: 44px;
+}
+
+h2 {
+  font-size: 35px;
+}
+
+h3 {
+  font-size: 28px;
+}
+
+h4 {
+  font-size: 22px;
+}
+
+h1, h2, h3 {
+  line-height: 1.2;
+  font-weight: 700;
+}
+
 .header {
   position: fixed;
   top: 0;
@@ -120,7 +146,7 @@ main .container .card {
 main .container .card .cover {
   height: 100%;
   width: fit-content;
-  padding: 0 10em;
+  padding: 0 7em 0 10em;
 }
 
 main .container .card .cover .book {
@@ -133,8 +159,8 @@ main .container .card .cover .book {
 }
 
 main .container .card .cover .book img {
-  height: 300px;
-  width: 250px;
+  height: 400px;
+  width: 350px;
   border: 1px solid black;
   border-radius: 8px;
 }
@@ -147,6 +173,9 @@ main .container .card .cover .book a button {
   color: white;
   border-radius: 8px;
   transition: 0.5s;
+  font-size: 18px;
+  line-height: 1.6;
+  font-weight: 400;
 }
 
 main .container .card .cover .book a button:hover {
@@ -166,7 +195,62 @@ main .container .card .description .title {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 3em 3em 1em;
+  padding: 3em 3em 0.5em;
+  line-height: 1.2;
+}
+
+main .container .card .description .kategori {
+  padding: 0em 3em 1em;
+}
+
+main .container .card .description .genre {
+  padding: 0em 3em 1em;
+  display: flex;
+  gap: 8px;
+}
+
+main .container .card .description .genre .tag-genre {
+  width: fit-content;
+  height: fit-content;
+  padding: 4px 8px;
+  color: white;
+  background-color: black;
+  border-radius: 99999px;
+}
+
+main .container .card .description .desc {
+  padding: 0em 3em 3em 3em;
+}
+
+main .container .card .description .desc p {
+  font-weight: 400;
+  text-align: justify;
+}
+
+main .container .card .description .card-description {
+  background-color: transparent;
+  padding: 3em 3em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+main .container .card .description .card-description .info-card {
+  background-color: #102b3f;
+  color: white;
+  height: fit-content;
+  width: 100%;
+  border-radius: 10px;
+  padding: 1.5em 0;
+}
+
+main .container .card .description .card-description .info-card .wrapper {
+  width: 258px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 footer {
