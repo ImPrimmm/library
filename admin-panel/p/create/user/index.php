@@ -18,6 +18,7 @@ if (!isset($_SESSION['email']) || !isset($_SESSION['username']) || !isset($_SESS
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel</title>
     <link rel="stylesheet" type="text/css" href="./style.css">
+    <script src="https://kit.fontawesome.com/39f0f07a3f.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -28,7 +29,7 @@ if (!isset($_SESSION['email']) || !isset($_SESSION['username']) || !isset($_SESS
             </div>
             <nav>
                 <ul>
-                    <li><a href="../../index.php">Dashboard</a></li>
+                    <li><a href="../../../index.php">Dashboard</a></li>
                     <li><a href="#">Log Buku</a></li>
                     <li><a href="index.php?locate=user" class="bgInfo" style="color:black;">User</a></li>
                     <li><a href="#">Buku</a></li>
@@ -41,18 +42,24 @@ if (!isset($_SESSION['email']) || !isset($_SESSION['username']) || !isset($_SESS
                 <div class="content">
                     <div class="wrapper">
                         <h2>User</h2>
-                        <a href="../../user/index.php">< Kembali</a>
+                        <a href="../../user/index.php">
+                            < Kembali</a>
                     </div>
                     <div class="form-wrapper">
                         <form action="../../../auth/create.php" method="post">
                             <div class="roleId-wrapper">
-                                <select name="roleOption" id="roleOption">
-                                    <option value="">Role</option>
-                                    <option value="guest">guest</option>
-                                    <option value="admin">admin</option>
-                                    <option value="staff">staff</option>
-                                </select>
-                                <input type="text" name="id" id="id" readonly>
+                                <div class="role-wrapper">
+                                    <select name="roleOption" id="roleOption">
+                                        <button>
+                                            <selectedcontent></selectedcontent>
+                                            <span class="picker"><i class="fa-solid fa-caret-down" style="color: white;"></i></span>
+                                        </button>
+                                        <option value="guest"><span>Guest</span></option>
+                                        <option value="admin"><span>Admin</span></option>
+                                        <option value="staff" class="last-option"><span>Staff</span></option>
+                                    </select>
+                                </div>
+                                <input type="text" name="id" id="id" placeholder="Id..." readonly maxlength="10">
                             </div>
                             <div class="email-wrapper">
                                 <label for="email">Email</label>
@@ -60,29 +67,33 @@ if (!isset($_SESSION['email']) || !isset($_SESSION['username']) || !isset($_SESS
                             </div>
                             <div class="username-wrapper">
                                 <label for="username">Username</label>
-                                <input type="text" name="username" id="username">
+                                <input type="text" name="username" id="username" maxlength="12" minlength="5">
                             </div>
                             <div class="pass-wrapper">
                                 <div class="firstPass-wrapper">
                                     <label for="password">Password</label>
-                                    <input type="password" name="password" id="password">
+                                    <input type="password" name="password" id="password" maxlength="18" minlength="8">
                                 </div>
-                                <div class="secondPass-wrapper">
+                                <div class="secondPass-wrapper" style="padding-top: 1em;">
                                     <label for="confirm-password">Confirm Password</label>
-                                    <input type="password" name="confirm-password" id="confirm-password">
+                                    <input type="password" name="confirm-password" id="confirm-password" maxlength="18" minlength="8">
                                 </div>
                             </div>
                             <div class="phoneNumber-wrapper">
                                 <label for="phoneNumber">Phone Number</label>
-                                <input type="number" name="phoneNumber" id="phoneNumber">
+                                <input type="number" name="phoneNumber" id="phoneNumber" maxlength="20">
                             </div>
-                            <input type="submit" value="submit">
+                            <div class="submit-wrapper" style="padding-top: 1em;">
+                                <input type="submit" value="submit">
+                            </div>
                         </form>
                     </div>
                 </div>
             </div>
         </main>
     </div>
+
+    <script src="./script.js"></script>
 </body>
 
 </html>
