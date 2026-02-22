@@ -34,7 +34,7 @@ if (isset($_SESSION['alert']) && $_SESSION['alert'] === 'wrongPassword') {
 </head>
 
 <body>
-    <div class="container">
+    <div class="container" id="container">
         <div class="side-navbar">
             <div class="logo">
                 <a href="#">Logo</a>
@@ -50,8 +50,29 @@ if (isset($_SESSION['alert']) && $_SESSION['alert'] === 'wrongPassword') {
         </div>
         <main class="main">
             <div class="top-navbar">
-                <nav>
-                    <img src="../../../../assets/img/profile.png" alt="profile">
+                <input type="checkbox" id="menu-check" class="cb">
+                <nav id="nav-profile">
+                    <img src="../../../../assets/img/profile.png" alt="profile" id="profile-menu">
+
+                    <div class="sub-menu-wrap" id="sub-menu-wrap">
+                        <div class="sub-menu">
+                            <div class="user-info">
+                                <img src="../../../../assets/img/profile.png">
+                                <?php echo "<h2>$_SESSION[username]</h2>" ?>
+                            </div>
+                            <hr>
+
+                            <a href="#">
+                                <i class="fa-regular fa-circle-user"></i>
+                                <p>Profile</p>
+                            </a>
+
+                            <a href="../../../../auth/logoutAuth.php">
+                                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                                <p>Logout</p>
+                            </a>
+                        </div>
+                    </div>
                 </nav>
             </div>
             <div class="content-wrapper">
@@ -83,16 +104,16 @@ if (isset($_SESSION['alert']) && $_SESSION['alert'] === 'wrongPassword') {
                             </div>
                             <div class="username-wrapper">
                                 <label for="username">Username</label>
-                                <input type="text" name="username" id="username" maxlength="12" minlength="5">
+                                <input type="text" name="username" id="username" maxlength="12" minlength="5" autocomplete="username">
                             </div>
                             <div class="pass-wrapper">
                                 <div class="firstPass-wrapper">
                                     <label for="password">Password</label>
-                                    <input type="password" name="password" id="password" maxlength="18" minlength="8">
+                                    <input type="password" name="password" id="password" maxlength="18" minlength="8" autocomplete="new-password">
                                 </div>
                                 <div class="secondPass-wrapper" style="padding-top: 1em;">
                                     <label for="confirm-password">Confirm Password</label>
-                                    <input type="password" name="confirm-password" id="confirm-password" maxlength="18" minlength="8">
+                                    <input type="password" name="confirm-password" id="confirm-password" maxlength="18" minlength="8" autocomplete="new-password">
                                 </div>
                             </div>
                             <div class="phoneNumber-wrapper">

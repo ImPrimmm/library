@@ -1,10 +1,25 @@
 const option = document.getElementById("roleOption");
 const userId = document.getElementById("id");
+const checkbox = document.getElementById("menu-check");
+const profileMenu = document.getElementById("profile-menu");
+const subMenu = document.getElementById("sub-menu-wrap");
 document.addEventListener("DOMContentLoaded", async () => {
   await getdata();
   fixId();
   option.addEventListener("change", () => {
     fixId();
+  });
+
+  profileMenu.addEventListener("click", () => {
+    if (checkbox.checked) {
+      checkbox.checked = false;
+      subMenu.style.maxHeight = "0";
+      subMenu.style.padding = "0em 1em";
+    } else {
+      checkbox.checked = true;
+      subMenu.style.maxHeight = "500px";
+      subMenu.style.padding = "1em 1em";
+    }
   });
 });
 const arr = [];
@@ -35,7 +50,7 @@ function makeId() {
 }
 
 function checkDupId() {
-    id = makeId();
+  id = makeId();
   for (const data of arr) {
     if (data.user_id == id) {
       return fixId("", true);

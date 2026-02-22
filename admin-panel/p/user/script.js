@@ -1,6 +1,21 @@
+const checkbox = document.getElementById("menu-check");
+const profileMenu = document.getElementById("profile-menu");
+const subMenu = document.getElementById("sub-menu-wrap");
+
 document.addEventListener("DOMContentLoaded", async () => {
   await getdata();
   showData();
+  profileMenu.addEventListener("click", () => {
+    if (checkbox.checked) {
+      checkbox.checked = false;
+      subMenu.style.maxHeight = "0";
+      subMenu.style.padding = "0em 1em";
+    } else {
+      checkbox.checked = true;
+      subMenu.style.maxHeight = "500px";
+      subMenu.style.padding = "1em 1em";
+    }
+  });
 });
 const arr = [];
 async function getdata() {
@@ -86,7 +101,7 @@ function showData() {
     editButton.innerText = "Edit";
     editButton.addEventListener("click", () => {
       location.href = `../update/user/index.php?updateId=${data.user_id}`;
-    })
+    });
 
     const deleteButton = document.createElement("button");
     deleteButton.classList.add("delete");
