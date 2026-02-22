@@ -122,6 +122,7 @@ h3 {
 
 .container main .content-wrapper {
   width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
 }
@@ -132,6 +133,7 @@ h3 {
   gap: 16px;
   width: 90%;
   padding: 2em 0 0 0;
+  height: 80%;
 }
 
 .container main .content-wrapper .content .wrapper {
@@ -149,7 +151,9 @@ h3 {
 }
 
 .container main .content-wrapper .content .table-wrapper {
-  overflow-x: auto;
+  overflow: auto;
+  height: fit-content;
+  overflow-y: auto;
   width: 100%;
 }
 

@@ -1,6 +1,6 @@
 <?php
 
-include "../../Include/database.php";
+include "../../../Include/database.php";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $id = $_POST['id'];
@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $create->bind_param("sssssss", $id, $email, $username, $hashPassword, $phoneNumber, $role, $verifyToken);
             $create->execute();
 
-            header("Location: ../index.php");
+            header("Location: ../../p/create/user/index.php");
         }
     } else {
         session_start();

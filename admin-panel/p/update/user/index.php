@@ -1,4 +1,7 @@
 <?php
+
+include "../../../../Include/database.php";
+
 session_start();
 
 if (!isset($_SESSION['email']) || !isset($_SESSION['username']) || !isset($_SESSION['role'])) {
@@ -18,6 +21,16 @@ if (isset($_SESSION['alert']) && $_SESSION['alert'] === 'wrongPassword') {
 } else if (isset($_SESSION['alert']) && $_SESSION['alert'] === 'verif') {
     echo "<script>alert('harap verifikasi email, harap check pula bagian spam')</script>";
     $_SESSION['alert'] = '';
+}
+
+$getUpdateId = $_GET["updateId"];
+$data = $conn->prepare("SELECT * FROM users WHERE user_id = ?");
+$data->bind_param("s", $getUpdateId);
+$data->execute();
+$result = $data->get_result();
+
+if (mysqli_num_rows($result) < 1) {
+    header("Location: ../../../index.php");
 }
 
 ?>
@@ -49,20 +62,16 @@ if (isset($_SESSION['alert']) && $_SESSION['alert'] === 'wrongPassword') {
             </nav>
         </div>
         <main class="main">
-            <div class="top-navbar">
-                <nav>
-                    <img src="../../../../assets/img/profile.png" alt="profile">
-                </nav>
-            </div>
+            <div class="top-navbar"></div>
             <div class="content-wrapper">
                 <div class="content">
                     <div class="wrapper">
-                        <h2>User</h2>
+                        <h2>Edit User</h2>
                         <a href="../../user/index.php">
                             < Kembali</a>
                     </div>
                     <div class="form-wrapper">
-                        <form action="../../../auth/user/create.php" method="post">
+                        <form action="../../../auth/user/update.php" method="post">
                             <div class="roleId-wrapper">
                                 <div class="role-wrapper">
                                     <select name="roleOption" id="roleOption">
@@ -83,16 +92,16 @@ if (isset($_SESSION['alert']) && $_SESSION['alert'] === 'wrongPassword') {
                             </div>
                             <div class="username-wrapper">
                                 <label for="username">Username</label>
-                                <input type="text" name="username" id="username" maxlength="12" minlength="5">
+                                <input type="text" name="username" id="username" maxlength="12" minlength="5" autocomplete="username">
                             </div>
                             <div class="pass-wrapper">
                                 <div class="firstPass-wrapper">
-                                    <label for="password">Password</label>
-                                    <input type="password" name="password" id="password" maxlength="18" minlength="8">
+                                    <label for="password">New Password</label>
+                                    <input type="password" name="password" id="password" maxlength="18" minlength="8" autocomplete="new-password">
                                 </div>
                                 <div class="secondPass-wrapper" style="padding-top: 1em;">
                                     <label for="confirm-password">Confirm Password</label>
-                                    <input type="password" name="confirm-password" id="confirm-password" maxlength="18" minlength="8">
+                                    <input type="password" name="confirm-password" id="confirm-password" maxlength="18" minlength="8" autocomplete="new-password">
                                 </div>
                             </div>
                             <div class="phoneNumber-wrapper">

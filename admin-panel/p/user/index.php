@@ -1,4 +1,7 @@
 <?php
+
+include "../../../Include/database.php";
+
 session_start();
 
 if (!isset($_SESSION['email']) || !isset($_SESSION['username']) || !isset($_SESSION['role'])) {
@@ -66,38 +69,22 @@ if (!isset($_SESSION['email']) || !isset($_SESSION['username']) || !isset($_SESS
         </main>
     </div>
 
+    <script>
+        const sessionId = '<?= "$_SESSION[id]" ?>'
+    </script>
     <script src="./script.js"></script>
 </body>
 
 </html>
 
 <?php
-if (isset($_GET['deleteId'])) {
-    if ($_GET['deleteId'] === $_SESSION['id']) {
-        echo "
-        <script>
-            alert('Anda tidak bisa menghapus akun yang sedang anda gunakan');
-            window.location.href = 'index.php?locate=user';
-        </script>
-        ";
-    } else {
-        $userId = $_GET['deleteId'];
+if (isset($_GET['locate']) && isset($_GET['deleteId']) && !isset($_GET['status'])) {
+    $userId = $_GET['deleteId'];
 
-        $delete = $conn->prepare("DELETE FROM users WHERE user_id = ?");
-        $delete->bind_param("s", $userId);
-        $delete->execute();
+    $delete = $conn->prepare("DELETE FROM users WHERE user_id = ?");
+    $delete->bind_param("s", $userId);
+    $delete->execute();
 
-        header("Location: index.php?locate=user");
-    }
-} else if (isset($_GET['status']) && $_GET['status'] == 'pending') {
-    $userId = $_SESSION['id'];
-    echo "
-    <script>
-        if (confirm('Yakin ingin menghapus akun?')) {
-            window.location.href = 'index.php?locate=user&deleteId=$userId';
-        } else {
-            window.location.href = 'index.php?locate=user';
-        }
-    </script>";
+    header("Location: index.php?locate=user");
 }
 ?>
