@@ -37,28 +37,28 @@ if (isset($_SESSION['email']) && $_SESSION['role'] === 'guest') {
                 <h1>Sign Up</h1>
                 <div class="input-container">
                     <div id="username-container" class="data-container">
-                        <label for="username">Username</label>
-                        <input type="text" name="username" id="username" class="box-input">
+                        <label for="username">Username <span style="color: red;">*</span></label>
+                        <input type="text" name="username" id="username" class="box-input" required>
                     </div>
 
                     <div id="email-container" class="data-container">
-                        <label for="email">Email</label>
-                        <input type="email" name="email" id="email" class="box-input">
+                        <label for="email">Email <span style="color: red;">*</span></label>
+                        <input type="email" name="email" id="email" class="box-input" required>
                     </div>
 
                     <div id="password-container" class="data-container">
-                        <label for="password">Password</label>
-                        <input type="password" name="password" id="password" class="box-input">
+                        <label for="password">Password <span style="color: red;">*</span></label>
+                        <input type="password" name="password" id="password" class="box-input" required>
                     </div>
 
                     <div id="confirm-password-container" class="data-container">
-                        <label for="confirm-password">Confirm Password</label>
-                        <input type="password" name="confirm-password" id="confirm-password" class="box-input">
+                        <label for="confirm-password">Confirm Password <span style="color: red;">*</span></label>
+                        <input type="password" name="confirm-password" id="confirm-password" class="box-input" required>
                     </div>
 
                     <div id="phone-number-container" class="data-container">
-                        <label for="phone-number">Phone Number</label>
-                        <input type="text" name="phone-number" id="phone-number" class="box-input">
+                        <label for="phone-number">Phone Number <span style="color: red;">*</span></label>
+                        <input type="text" name="phone-number" id="phone-number" class="box-input" required>
                     </div>
 
                     <div id="button-container">

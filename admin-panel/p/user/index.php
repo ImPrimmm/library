@@ -21,6 +21,7 @@ if (!isset($_SESSION['email']) || !isset($_SESSION['username']) || !isset($_SESS
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel</title>
     <link rel="stylesheet" type="text/css" href="./style.css">
+    <script src="https://kit.fontawesome.com/39f0f07a3f.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -75,13 +76,61 @@ if (!isset($_SESSION['email']) || !isset($_SESSION['username']) || !isset($_SESS
                         <table border="1">
                             <thead>
                                 <tr>
-                                    <th>No</th>
-                                    <th>User Id</th>
-                                    <th>Email</th>
-                                    <th>Username</th>
+                                    <th class="th-no">
+                                        <span>
+                                            No
+                                            <div class="icon-table-wrapper">
+                                                <i class="fa-solid fa-caret-up"></i>
+                                                <i class="fa-solid fa-caret-down"></i>
+                                            </div>
+                                        </span>
+                                    </th>
+                                    <th>
+                                        <span>
+                                            User Id
+                                            <div class="icon-table-wrapper">
+                                                <i class="fa-solid fa-caret-up"></i>
+                                                <i class="fa-solid fa-caret-down"></i>
+                                            </div>
+                                        </span>
+                                    </th>
+                                    <th>
+                                        <span>
+                                            Email
+                                            <div class="icon-table-wrapper">
+                                                <i class="fa-solid fa-caret-up"></i>
+                                                <i class="fa-solid fa-caret-down"></i>
+                                            </div>
+                                        </span>
+                                    </th>
+                                    <th class="th-username">
+                                        <span>
+                                            Username
+                                            <div class="icon-table-wrapper">
+                                                <i class="fa-solid fa-caret-up"></i>
+                                                <i class="fa-solid fa-caret-down"></i>
+                                            </div>
+                                        </span>
+                                    </th>
                                     <th>password</th>
-                                    <th>Phone Number</th>
-                                    <th>Role</th>
+                                    <th class="th-phone-number">
+                                        <span>
+                                            Phone Number
+                                            <div class="icon-table-wrapper">
+                                                <i class="fa-solid fa-caret-up"></i>
+                                                <i class="fa-solid fa-caret-down"></i>
+                                            </div>
+                                        </span>
+                                    </th>
+                                    <th class="th-role">
+                                        <span>
+                                            Role
+                                            <div class="icon-table-wrapper">
+                                                <i class="fa-solid fa-caret-up"></i>
+                                                <i class="fa-solid fa-caret-down"></i>
+                                            </div>
+                                        </span>
+                                    </th>
                                     <th>Verify Token</th>
                                     <th>Action</th>
                                 </tr>

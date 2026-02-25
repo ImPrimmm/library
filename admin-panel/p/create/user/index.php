@@ -99,25 +99,25 @@ if (isset($_SESSION['alert']) && $_SESSION['alert'] === 'wrongPassword') {
                                 <input type="text" name="id" id="id" placeholder="Id..." readonly maxlength="10">
                             </div>
                             <div class="email-wrapper">
-                                <label for="email">Email</label>
+                                <label for="email">Email <span style="color: red;">*</span></label>
                                 <input type="email" name="email" id="email">
                             </div>
                             <div class="username-wrapper">
-                                <label for="username">Username</label>
+                                <label for="username">Username <span style="color: red;">*</span></label>
                                 <input type="text" name="username" id="username" maxlength="12" minlength="5" autocomplete="username">
                             </div>
                             <div class="pass-wrapper">
                                 <div class="firstPass-wrapper">
-                                    <label for="password">Password</label>
+                                    <label for="password">Password <span style="color: red;">*</span></label>
                                     <input type="password" name="password" id="password" maxlength="18" minlength="8" autocomplete="new-password">
                                 </div>
                                 <div class="secondPass-wrapper" style="padding-top: 1em;">
-                                    <label for="confirm-password">Confirm Password</label>
+                                    <label for="confirm-password">Confirm Password <span style="color: red;">*</span></label>
                                     <input type="password" name="confirm-password" id="confirm-password" maxlength="18" minlength="8" autocomplete="new-password">
                                 </div>
                             </div>
                             <div class="phoneNumber-wrapper">
-                                <label for="phoneNumber">Phone Number</label>
+                                <label for="phoneNumber">Phone Number <span style="color: red;">*</span></label>
                                 <input type="number" name="phoneNumber" id="phoneNumber" maxlength="20">
                             </div>
                             <div class="submit-wrapper" style="padding-top: 1em;">

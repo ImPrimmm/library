@@ -150,10 +150,13 @@ h3 {
   width: 320px;
   background-color: white;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  overflow: hidden;  
+  overflow: hidden;
   max-height: 0;
   padding: 0 1em;
-  transition: max-height 0.3s, padding 0.3s;
+  transition:
+    max-height 0.3s,
+    padding 0.3s;
+  transition-timing-function: cubic-bezier(0, 0.41, 0.16, 4.33);
 }
 
 .container main .top-navbar nav .sub-menu-wrap .sub-menu .user-info {
@@ -241,6 +244,10 @@ h3 {
   width: 100%;
 }
 
+.table-wrapper table thead tr th:hover {
+  cursor: pointer;
+}
+
 .container main .content-wrapper .content .table-wrapper table tbody tr td,
 .container main .content-wrapper .content .table-wrapper table thead tr th {
   border: 1px solid #818181;
@@ -255,14 +262,38 @@ h3 {
   color: white;
 }
 
-.container
-  main
-  .content-wrapper
-  .content
-  .table-wrapper
-  table
-  tbody
-  tr:nth-child(even) {
+.table-wrapper table thead tr .th-no span {
+  width: 4em;
+}
+
+.table-wrapper table thead tr .th-phone-number span,
+.table-wrapper table thead tr .th-username span{
+  width: 10em;
+}
+
+.table-wrapper table thead tr .th-role span {
+  width: 4em;
+}
+
+.table-wrapper table thead tr th span {
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.table-wrapper table thead tr th span .icon-table-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.table-wrapper table thead tr th span .icon-table-wrapper i {
+  width: fit-content;
+  height: fit-content;
+}
+
+.table-wrapper table tbody tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 
@@ -270,31 +301,14 @@ h3 {
   background-color: #ddd;
 }
 
-.container
-  main
-  .content-wrapper
-  .content
-  .table-wrapper
-  table
-  tbody
-  tr
-  .button-wrapper {
+.table-wrapper table tbody tr .button-wrapper {
   display: flex;
   justify-content: space-around;
   align-items: center;
   gap: 6px;
 }
 
-.container
-  main
-  .content-wrapper
-  .content
-  .table-wrapper
-  table
-  tbody
-  tr
-  .button-wrapper
-  button {
+.table-wrapper table tbody tr .button-wrapper button {
   padding: 0.5em 1em;
   border-collapse: collapse;
   border-radius: 8px;
@@ -303,27 +317,10 @@ h3 {
   background-color: red;
 }
 
-.container
-  main
-  .content-wrapper
-  .content
-  .table-wrapper
-  table
-  tbody
-  tr
-  .button-wrapper .update {
-    background-color: green;
-  }
+.table-wrapper table tbody tr .button-wrapper .update {
+  background-color: green;
+}
 
-.container
-  main
-  .content-wrapper
-  .content
-  .table-wrapper
-  table
-  tbody
-  tr
-  .button-wrapper
-  button:hover {
-    cursor: pointer;
+.table-wrapper table tbody tr .button-wrapper button:hover {
+  cursor: pointer;
 }

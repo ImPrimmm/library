@@ -18,6 +18,7 @@ if (!isset($_SESSION['email']) || !isset($_SESSION['username']) || !isset($_SESS
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel</title>
     <link rel="stylesheet" type="text/css" href="./style.css">
+    <script src="https://kit.fontawesome.com/39f0f07a3f.js" crossorigin="anonymous"></script>
 </head>
 
 <body>

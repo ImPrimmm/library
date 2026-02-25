@@ -1,6 +1,6 @@
 <?php
 
-            session_start();
+session_start();
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
@@ -53,8 +53,6 @@ function verifyingEmail($username, $email, $verifyToken, $from)
             header("Location: ../p/SignUp/index.php");
             exit;
         }
-
-        
     } catch (Exception $e) {
         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     }

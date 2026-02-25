@@ -38,12 +38,12 @@ if (isset($_SESSION['email']) && $_SESSION['role'] === 'guest') {
                 <div class="input-container">
                     <div id="email-container" class="data-container">
                         <label for="email">email <span style="color: red;">*</span></label>
-                        <input type="text" name="email" id="email" class="box-input" maxlength="200">
+                        <input type="text" name="email" id="email" class="box-input" maxlength="200" required>
                     </div>
 
                     <div id="password-container" class="data-container">
                         <label for="password">Password <span style="color: red;">*</span></label>
-                        <input type="password" name="password" id="password" class="box-input" maxlength="18">
+                        <input type="password" name="password" id="password" class="box-input" maxlength="18" required>
                         <div id="check-password"></div>
                     </div>
 
