@@ -1,3 +1,5 @@
+import makeSidebar from "../components/admin-panel/sidebar.js";
+
 const checkbox = document.getElementById("menu-check");
 const profileMenu = document.getElementById("profile-menu");
 const subMenu = document.getElementById("sub-menu-wrap");
@@ -15,3 +17,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+makeSidebar("dashboard", role);

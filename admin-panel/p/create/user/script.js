@@ -1,3 +1,5 @@
+import makeSidebar from "../../../../components/admin-panel/sidebar.js";
+
 const option = document.getElementById("roleOption");
 const userId = document.getElementById("id");
 const checkbox = document.getElementById("menu-check");
@@ -67,3 +69,5 @@ function fixId(id, status = true) {
     userId.value = id;
   }
 }
+
+makeSidebar("user", role)

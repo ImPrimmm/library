@@ -23,20 +23,10 @@ if (!isset($_SESSION['email']) || !isset($_SESSION['username']) || !isset($_SESS
 
 <body>
     <div class="container">
-        <div class="side-navbar">
+        <div class="side-navbar" id="side-navbar">
             <div class="logo">
                 <a href="#">Logo</a>
             </div>
-            <nav>
-                <ul>
-                    <li><a href="#" class="<?= "bgInfo" ?>" style="<?= "color:black;" ?>">Dashboard</a></li>
-                    <li><a href="#">Log Buku</a></li>
-                    <?php if($_SESSION['role'] == "admin") {?>
-                        <?php  echo '<li><a href="./p/user/index.php?locate=user">User</a></li>' ?>
-                    <?php } ?>
-                    <li><a href="#">Buku</a></li>
-                </ul>
-            </nav>
         </div>
         <main class="main">
             <div class="top-navbar">
@@ -68,7 +58,10 @@ if (!isset($_SESSION['email']) || !isset($_SESSION['username']) || !isset($_SESS
         </main>
     </div>
 
-    <script src="./script.js"></script>
+    <script>
+        const role = <?= json_encode($_SESSION['role']) ?>;
+    </script>
+    <script type="module" src="./script.js"></script>
 </body>
 
 </html>

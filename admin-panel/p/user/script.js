@@ -1,3 +1,5 @@
+import makeSidebar from "../../../components/admin-panel/sidebar.js";
+
 const checkbox = document.getElementById("menu-check");
 const profileMenu = document.getElementById("profile-menu");
 const subMenu = document.getElementById("sub-menu-wrap");
@@ -145,3 +147,5 @@ if (urlParam.has("status", "pending") == true && urlParam.has("deleteId")) {
     location.href = `index.php?locate=user`;
   }
 }
+
+makeSidebar("user", role);

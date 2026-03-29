@@ -26,18 +26,10 @@ if (!isset($_SESSION['email']) || !isset($_SESSION['username']) || !isset($_SESS
 
 <body>
     <div class="container">
-        <div class="side-navbar">
+        <div class="side-navbar" id="side-navbar">
             <div class="logo">
                 <a href="#">Logo</a>
             </div>
-            <nav>
-                <ul>
-                    <li><a href="../../index.php">Dashboard</a></li>
-                    <li><a href="#">Log Buku</a></li>
-                    <li><a href="index.php?locate=user" class="bgInfo" style="color:black;">User</a></li>
-                    <li><a href="#">Buku</a></li>
-                </ul>
-            </nav>
         </div>
         <main class="main">
             <div class="top-navbar">
@@ -144,9 +136,10 @@ if (!isset($_SESSION['email']) || !isset($_SESSION['username']) || !isset($_SESS
     </div>
 
     <script>
-        const sessionId = '<?= "$_SESSION[id]" ?>'
+        const sessionId = '<?= "$_SESSION[id]" ?>';
+        const role = <?= json_encode($_SESSION['role']) ?>;
     </script>
-    <script src="./script.js"></script>
+    <script type="module" src="./script.js"></script>
 </body>
 
 </html>
