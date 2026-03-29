@@ -4,7 +4,7 @@ header("Content-Type: application/json");
 
 include "../../Include/database.php";
 
-$user = $conn->prepare("SELECT * FROM users");
+$user = $conn->prepare("SELECT * FROM users ORDER BY no ASC");
 $user->execute();
 $result = $user->get_result();
 

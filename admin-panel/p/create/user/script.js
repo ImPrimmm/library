@@ -52,7 +52,7 @@ function makeId() {
 }
 
 function checkDupId() {
-  id = makeId();
+  let id = makeId();
   for (const data of arr) {
     if (data.user_id == id) {
       return fixId("", true);

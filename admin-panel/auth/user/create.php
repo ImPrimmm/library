@@ -10,6 +10,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $confirmPassword = $_POST['confirm-password'];
     $role = $_POST['roleOption'];
 
+    $statusNo = true;
+    $no = 1;
+
+    for (; $statusNo;) {
+        $noValidation = $conn->prepare("SELECT * FROM users WHERE no = ?");
+        $noValidation->bind_param("s", $no);
+        $noValidation->execute();
+        $noResult = $noValidation->get_result();
+        if ($noResult->num_rows == 1) {
+            $no = $no + 1;
+        } else {
+            $statusNo = false;
+        }
+    }
+
     $statusVerify = true;
 
     for (; $statusVerify;) {
@@ -38,8 +53,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         } else {
             $hashPassword = password_hash($password, PASSWORD_BCRYPT);
 
-            $create = $conn->prepare("INSERT INTO users (user_id, email, username, password, phone_number, role, verify_token) VALUES (?, ?, ?, ?, ?, ?, ?)");
-            $create->bind_param("sssssss", $id, $email, $username, $hashPassword, $phoneNumber, $role, $verifyToken);
+            $create = $conn->prepare("INSERT INTO users (no, user_id, email, username, password, phone_number, role, verify_token) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+            $create->bind_param("isssssss", $no, $id, $email, $username, $hashPassword, $phoneNumber, $role, $verifyToken);
             $create->execute();
 
             header("Location: ../../p/create/user/index.php");

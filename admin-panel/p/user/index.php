@@ -68,7 +68,7 @@ if (!isset($_SESSION['email']) || !isset($_SESSION['username']) || !isset($_SESS
                         <table border="1">
                             <thead>
                                 <tr>
-                                    <th class="th-no">
+                                    <th class="th-no" data-column="no">
                                         <span>
                                             No
                                             <div class="icon-table-wrapper">
@@ -77,7 +77,7 @@ if (!isset($_SESSION['email']) || !isset($_SESSION['username']) || !isset($_SESS
                                             </div>
                                         </span>
                                     </th>
-                                    <th>
+                                    <th data-column="user_id">
                                         <span>
                                             User Id
                                             <div class="icon-table-wrapper">
@@ -86,7 +86,7 @@ if (!isset($_SESSION['email']) || !isset($_SESSION['username']) || !isset($_SESS
                                             </div>
                                         </span>
                                     </th>
-                                    <th>
+                                    <th data-column="email">
                                         <span>
                                             Email
                                             <div class="icon-table-wrapper">
@@ -95,7 +95,7 @@ if (!isset($_SESSION['email']) || !isset($_SESSION['username']) || !isset($_SESS
                                             </div>
                                         </span>
                                     </th>
-                                    <th class="th-username">
+                                    <th class="th-username" data-column="username">
                                         <span>
                                             Username
                                             <div class="icon-table-wrapper">
@@ -108,13 +108,9 @@ if (!isset($_SESSION['email']) || !isset($_SESSION['username']) || !isset($_SESS
                                     <th class="th-phone-number">
                                         <span>
                                             Phone Number
-                                            <div class="icon-table-wrapper">
-                                                <i class="fa-solid fa-caret-up"></i>
-                                                <i class="fa-solid fa-caret-down"></i>
-                                            </div>
                                         </span>
                                     </th>
-                                    <th class="th-role">
+                                    <th class="th-role" data-column="role">
                                         <span>
                                             Role
                                             <div class="icon-table-wrapper">

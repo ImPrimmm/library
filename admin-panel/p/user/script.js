@@ -3,9 +3,12 @@ import makeSidebar from "../../../components/admin-panel/sidebar.js";
 const checkbox = document.getElementById("menu-check");
 const profileMenu = document.getElementById("profile-menu");
 const subMenu = document.getElementById("sub-menu-wrap");
+let arr = [];
+let copyArr = [];
 
 document.addEventListener("DOMContentLoaded", async () => {
   await getdata();
+  copyArr = [...arr];
   showData();
   profileMenu.addEventListener("click", () => {
     if (checkbox.checked) {
@@ -18,8 +21,16 @@ document.addEventListener("DOMContentLoaded", async () => {
       subMenu.style.padding = "1em 1em";
     }
   });
+
+  const arrTh = Array.from(document.querySelectorAll("th"));
+  for (const data of arrTh) {
+    if (data.dataset.column) {
+      data.addEventListener("click", () => {
+        sortColumn(data.dataset.column);
+      })
+    }
+  }
 });
-const arr = [];
 async function getdata() {
   try {
     const response = await fetch(
@@ -42,16 +53,13 @@ const urlParam = new URLSearchParams(location.search);
 
 function showData() {
   const tbody = document.getElementById("tbody");
-  let no = 0;
   for (const data of arr) {
-    no += 1;
-
     const tr = document.createElement("tr");
-    tr.setAttribute("data-no", `${no}`);
+    tr.setAttribute("data-no", `${data.no}`);
 
     const dataNum = document.createElement("td");
-    dataNum.setAttribute("id", `user-num-${no}`);
-    dataNum.innerText = `${no}`;
+    dataNum.setAttribute("id", `user-num-${data.no}`);
+    dataNum.innerText = `${data.no}`;
 
     const userId = document.createElement("td");
     userId.setAttribute("id", `user-id-${data.user_id}`);
@@ -145,6 +153,29 @@ if (urlParam.has("status", "pending") == true && urlParam.has("deleteId")) {
     }
   } else {
     location.href = `index.php?locate=user`;
+  }
+}
+
+let status = "normal"
+
+function sortColumn(column = "") {
+  const key = Object.keys(arr[0]).find(k => k.toLowerCase() == column.toLowerCase());
+  console.log(key);
+  
+  if (key) {
+    if (status == "normal") {
+      arr.sort((a, b) => String(a[key]).localeCompare(String(b[key])));
+      status = "asc";
+    } else if (status == "asc") {
+      arr.sort((a, b) => String(b[key]).localeCompare(String(a[key])));
+      status = "desc";
+    } else {
+      arr = [...copyArr];
+      status = "normal";
+    }
+    const tbody = document.getElementById("tbody");
+    tbody.innerHTML = "";
+    showData();
   }
 }
 
