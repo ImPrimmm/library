@@ -157,12 +157,12 @@ if (urlParam.has("status", "pending") == true && urlParam.has("deleteId")) {
 }
 
 let status = "normal"
+let noStatus = "asc"
 
 function sortColumn(column = "") {
   const key = Object.keys(arr[0]).find(k => k.toLowerCase() == column.toLowerCase());
-  console.log(key);
   
-  if (key) {
+  if (key !== "no") {
     if (status == "normal") {
       arr.sort((a, b) => String(a[key]).localeCompare(String(b[key])));
       status = "asc";
@@ -172,6 +172,17 @@ function sortColumn(column = "") {
     } else {
       arr = [...copyArr];
       status = "normal";
+    }
+    const tbody = document.getElementById("tbody");
+    tbody.innerHTML = "";
+    showData();
+  } else {
+    if (noStatus == "asc") {
+      arr.sort((a, b) => String(b[key]).localeCompare(String(a[key])));
+      noStatus = "desc";
+    } else {
+      arr.sort((a, b) => String(a[key]).localeCompare(String(b[key])));
+      noStatus = "asc";
     }
     const tbody = document.getElementById("tbody");
     tbody.innerHTML = "";
